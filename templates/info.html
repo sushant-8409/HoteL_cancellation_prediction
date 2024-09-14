@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Details</title>
+    <link rel="stylesheet" href="../staticFiles/style.css">
+    <style>
+        .info-button {
+            margin-top: 20px;
+        }
+
+        .info-button a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .info-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-info">
+        <h1>Input Details for Hotel Booking Cancellation Prediction</h1>
+        <ul>
+            <!-- List items here -->
+            <!-- Your list content remains unchanged -->
+            <li><strong>Hotel:</strong> Hotel (H1 = Resort Hotel or H2 = City Hotel)</li>
+            <li><strong>Lead Time:</strong> Number of days that elapsed between the entering date of the booking into the PMS and the arrival date</li>
+            <li><strong>Arrival Date Year:</strong> Year of arrival date</li>
+            <li><strong>Arrival Date Month:</strong> Month of arrival date</li>
+            <li><strong>Arrival Date Week Number:</strong> Week number of year for arrival date</li>
+            <li><strong>Arrival Date Day of Month:</strong> Day of arrival date</li>
+            <li><strong>Stays in Weekend Nights:</strong> Number of weekend nights (Saturday or Sunday) the guest stayed or booked to stay at the hotel</li>
+            <li><strong>Stays in Week Nights:</strong> Number of week nights (Monday to Friday) the guest stayed or booked to stay at the hotel</li>
+            <li><strong>Adults:</strong> Number of adults</li>
+            <li><strong>Meal:</strong> Type of meal booked. Categories are presented in standard hospitality meal packages: Undefined/SC – no meal</li>
+            <li><strong>Country:</strong> Country of origin</li>
+            <li><strong>Market Segment:</strong> Market segment designation. In categories, the term “TA” means “Travel Agents” and “TO” means “Tour Operators”</li>
+            <li><strong>Distribution Channel:</strong> Booking distribution channel. The term “TA” means “Travel Agents” and “TO” means “Tour Operators”</li>
+            <li><strong>Is Repeated Guest:</strong> Value indicating if the booking name was from a repeated guest (1) or not (0)</li>
+            <li><strong>Previous Cancellations:</strong> Number of previous bookings that were cancelled by the customer prior to the current booking</li>
+            <li><strong>Previous Bookings Not Canceled:</strong> Number of previous bookings not cancelled by the customer prior to the current booking</li>
+            <li><strong>Reserved Room Type:</strong> Code of room type reserved. Code is presented instead of designation for anonymity reasons.</li>
+            <li><strong>Assigned Room Type:</strong> Code for the type of room assigned to the booking. Sometimes the assigned room type differs from the reserved.</li>
+            <li><strong>Booking Changes:</strong> Number of changes/amendments made to the booking from the moment the booking was entered on</li>
+            <li><strong>Deposit Type:</strong> Indication on if the customer made a deposit to guarantee the booking. This variable can assume three values</li>
+            <li><strong>Days in Waiting List:</strong> Number of days the booking was in the waiting list before it was confirmed to the customer</li>
+            <li><strong>Customer Type:</strong> Type of booking, assuming one of four categories: Contract - when the booking has an allotment or other type of</li>
+            <li><strong>ADR:</strong> Average Daily Rate as defined by dividing the sum of all lodging transactions by the total number of staying nights</li>
+            <li><strong>Required Car Parking Spaces:</strong> Number of car parking spaces required by the customer</li>
+            <li><strong>Total of Special Requests:</strong> Number of special requests made by the customer (e.g., twin bed or high floor)</li>
+        </ul>
+        
+        <!-- Button to go back to the main form -->
+        <div class="info-button">
+            <a href="{{ url_for('home') }}">Back to Prediction Form</a>
+        </div>
+    </div>
+</body>
+</html>
