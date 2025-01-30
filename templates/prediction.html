@@ -1,0 +1,471 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Cancellation Prediction</title>
+    <link rel="stylesheet" href="../staticFiles/style.css">
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <a href="{{ url_for('info') }}" class="button-index">View Input Details</a> 
+            <h1>Hotel Booking Cancellation Prediction</h1> 
+            <a href="{{ url_for('graph') }}" class="button-index">View Prediction Graphs</a>
+            
+        </header>
+        <!-- onsubmit="return validateForm()" -->
+          <form id="prediction-form" action="{{ url_for('predict') }}" method="post"  class="form-grid">
+            <div class="grid-container">
+
+                <div>
+                    <label for="lead_time">Lead Time (days)</label>
+                    <input type="number" id="lead_time" name="lead_time" placeholder="0 to 737" min="0" max="737" required>
+                </div>
+             
+<div>
+    <label for="arrival_date_month">Arrival Date Month</label>
+    <select id="arrival_date_month" name="arrival_date_month" required>
+        <option value="" disabled selected>Select a month</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+</div>
+
+                
+                <div>
+                    <label for="arrival_date_week_number">Arrival Date Week Number</label>
+                    <input type="number" id="arrival_date_week_number" name="arrival_date_week_number" placeholder="0 to 53" min="0" max="737" required>
+                </div>
+                
+                
+                <div>
+                    <label for="arrival_date_day_of_month">Arrival Date Day of Month</label>
+                    <input type="number" id="arrival_date_day_of_month" name="arrival_date_day_of_month" placeholder="1 to 31" min="1" max="31" required>
+                </div>
+                
+                
+                <div>
+                    <label for="stays_in_weekend_nights">Stays in Weekend Nights</label>
+                    <input type="number" id="stays_in_weekend_nights" name="stays_in_weekend_nights" placeholder="0 to 19" min="0" max="19" required>
+                </div>
+                
+                
+                <div>
+                    <label for="stays_in_week_nights">Stays in Week Nights</label>
+                    <input type="number" id="stays_in_week_nights" name="stays_in_week_nights" placeholder="0 to 50" min="0" max="50" required>
+                </div>
+                
+                
+                <div>
+                    <label for="adults">Adults</label>
+                    <input type="number" id="adults" name="adults" placeholder="1 to 55" min="1" max="55" required>
+                </div>
+                
+              
+                <div>
+                    <label for="is_repeated_guest">Is Repeated Guest?</label>
+                    <select id="is_repeated_guest" name="is_repeated_guest" required>
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                
+                
+                <div>
+                    <label for="previous_cancellations">Previous Cancellations</label>
+                    <input type="number" id="previous_cancellations" name="previous_cancellations" placeholder="0 to 26" min="0" max="26" required>
+                </div>
+                
+                <div>
+                    <label for="previous_bookings_not_canceled">Previous Bookings Not Canceled</label>
+                    <input type="number" id="previous_bookings_not_canceled" name="previous_bookings_not_canceled" placeholder="0 to 72" min="0" max="72" required>
+                </div>
+                
+                <div>
+                    <label for="booking_changes">Booking Changes</label>
+                    <input type="number" id="booking_changes" name="booking_changes" placeholder="0 to 18" min="0" max="18" required>
+                </div>
+                
+                <div>
+                    <label for="days_in_waiting_list">Waiting List (days)</label>
+                    <input type="number" id="days_in_waiting_list" name="days_in_waiting_list" placeholder="0 to 391" min="0" max="391" required>
+                </div>
+                
+                
+                <div>
+                    <label for="adr">Average Daily Rate (EUR/night)</label>
+                    <input type="number" id="adr" name="adr" placeholder="0 to 5400" min="0" max="5400" required>
+                </div>
+                
+                
+
+
+                <div>
+                    <label for="required_car_parking_spaces">Required Car Parking Spaces</label>
+                    <input type="number" id="required_car_parking_spaces" name="required_car_parking_spaces" placeholder="0 to 8" min="0" max="8" required>
+                </div>
+                
+                <div>
+                    <label for="total_of_special_requests">Total of Special Requests</label>
+                    <input type="number" id="total_of_special_requests" name="total_of_special_requests" placeholder="0 to 5" min="0" max="5" required>
+                </div>
+                
+                <div>
+                    <label for="kids">Kids</label>
+                    <input type="number" id="kids" name="kids" placeholder="0 to 20" min="0" max="20" required>
+                </div>
+                
+               
+                <div>
+                    <label for="hotel">Hotel Type</label>
+                    <select id="hotel" name="hotel" required>
+                        <option value="" disabled selected>Select Hotel Type</option>
+                        <option value="City Hotel">City Hotel</option>
+                        <option value="Resort Hotel">Resort Hotel</option>
+                    </select>
+                </div>
+                
+              
+               
+                <div>
+                    <label for="meal">Meal Plan</label>
+                    <select id="meal" name="meal" required>
+                        <option value="" disabled selected>Select Meal Plan</option>
+                        <option value="BB">Bed and Breakfast (BB)</option>
+                        <option value="FB">Full Board (FB)</option>
+                        <option value="HB">Half Board (HB)</option>
+                        <option value="SC">Self Catering (SC)</option>
+                        <option value="Undefined">Undefined</option>
+                    </select>
+                </div>
+                
+               
+
+
+                <div>
+                    <label for="country">Country</label>
+                    <select id="country" name="country" required>
+                        <option value="" disabled selected>Select Country</option>
+                        <option value="ABW">Aruba (ABW)</option>
+                        <option value="AGO">Angola (AGO)</option>
+                        <option value="AIA">Anguilla (AIA)</option>
+                        <option value="ALB">Albania (ALB)</option>
+                        <option value="AND">Andorra (AND)</option>
+                        <option value="ARE">United Arab Emirates (ARE)</option>
+                        <option value="ARG">Argentina (ARG)</option>
+                        <option value="ARM">Armenia (ARM)</option>
+                        <option value="ASM">American Samoa (ASM)</option>
+                        <option value="ATA">Antarctica (ATA)</option>
+                        <option value="ATF">French Southern Territories (ATF)</option>
+                        <option value="AUS">Australia (AUS)</option>
+                        <option value="AUT">Austria (AUT)</option>
+                        <option value="AZE">Azerbaijan (AZE)</option>
+                        <option value="BDI">Burundi (BDI)</option>
+                        <option value="BEL">Belgium (BEL)</option>
+                        <option value="BEN">Benin (BEN)</option>
+                        <option value="BFA">Burkina Faso (BFA)</option>
+                        <option value="BGD">Bangladesh (BGD)</option>
+                        <option value="BGR">Bulgaria (BGR)</option>
+                        <option value="BHR">Bahrain (BHR)</option>
+                        <option value="BHS">Bahamas (BHS)</option>
+                        <option value="BIH">Bosnia and Herzegovina (BIH)</option>
+                        <option value="BLR">Belarus (BLR)</option>
+                        <option value="BOL">Bolivia (BOL)</option>
+                        <option value="BRA">Brazil (BRA)</option>
+                        <option value="BRB">Barbados (BRB)</option>
+                        <option value="BWA">Botswana (BWA)</option>
+                        <option value="CAF">Central African Republic (CAF)</option>
+                        <option value="CHE">Switzerland (CHE)</option>
+                        <option value="CHL">Chile (CHL)</option>
+                        <option value="CHN">China (CHN)</option>
+                        <option value="CIV">Ivory Coast (CIV)</option>
+                        <option value="CMR">Cameroon (CMR)</option>
+                        <option value="CN">China (CN)</option>
+                        <option value="COL">Colombia (COL)</option>
+                        <option value="COM">Comoros (COM)</option>
+                        <option value="CPV">Cape Verde (CPV)</option>
+                        <option value="CRI">Costa Rica (CRI)</option>
+                        <option value="CUB">Cuba (CUB)</option>
+                        <option value="CYM">Cayman Islands (CYM)</option>
+                        <option value="CYP">Cyprus (CYP)</option>
+                        <option value="CZE">Czech Republic (CZE)</option>
+                        <option value="DEU">Germany (DEU)</option>
+                        <option value="DJI">Djibouti (DJI)</option>
+                        <option value="DMA">Dominica (DMA)</option>
+                        <option value="DNK">Denmark (DNK)</option>
+                        <option value="DOM">Dominican Republic (DOM)</option>
+                        <option value="DZA">Algeria (DZA)</option>
+                        <option value="ECU">Ecuador (ECU)</option>
+                        <option value="EGY">Egypt (EGY)</option>
+                        <option value="ESP">Spain (ESP)</option>
+                        <option value="EST">Estonia (EST)</option>
+                        <option value="ETH">Ethiopia (ETH)</option>
+                        <option value="FIN">Finland (FIN)</option>
+                        <option value="FJI">Fiji (FJI)</option>
+                        <option value="FRA">France (FRA)</option>
+                        <option value="FRO">Faroe Islands (FRO)</option>
+                        <option value="GAB">Gabon (GAB)</option>
+                        <option value="GBR">United Kingdom (GBR)</option>
+                        <option value="GEO">Georgia (GEO)</option>
+                        <option value="GGY">Guernsey (GGY)</option>
+                        <option value="GHA">Ghana (GHA)</option>
+                        <option value="GIB">Gibraltar (GIB)</option>
+                        <option value="GLP">Guadeloupe (GLP)</option>
+                        <option value="GNB">Guinea-Bissau (GNB)</option>
+                        <option value="GRC">Greece (GRC)</option>
+                        <option value="GTM">Guatemala (GTM)</option>
+                        <option value="GUY">Guyana (GUY)</option>
+                        <option value="HKG">Hong Kong (HKG)</option>
+                        <option value="HND">Honduras (HND)</option>
+                        <option value="HRV">Croatia (HRV)</option>
+                        <option value="HUN">Hungary (HUN)</option>
+                        <option value="IDN">Indonesia (IDN)</option>
+                        <option value="IMN">Isle of Man (IMN)</option>
+                        <option value="IND">India (IND)</option>
+                        <option value="IRL">Ireland (IRL)</option>
+                        <option value="IRN">Iran (IRN)</option>
+                        <option value="IRQ">Iraq (IRQ)</option>
+                        <option value="ISL">Iceland (ISL)</option>
+                        <option value="ISR">Israel (ISR)</option>
+                        <option value="ITA">Italy (ITA)</option>
+                        <option value="JAM">Jamaica (JAM)</option>
+                        <option value="JEY">Jersey (JEY)</option>
+                        <option value="JOR">Jordan (JOR)</option>
+                        <option value="JPN">Japan (JPN)</option>
+                        <option value="KAZ">Kazakhstan (KAZ)</option>
+                        <option value="KEN">Kenya (KEN)</option>
+                        <option value="KHM">Cambodia (KHM)</option>
+                        <option value="KIR">Kiribati (KIR)</option>
+                        <option value="KNA">Saint Kitts and Nevis (KNA)</option>
+                        <option value="KOR">South Korea (KOR)</option>
+                        <option value="KWT">Kuwait (KWT)</option>
+                        <option value="LAO">Laos (LAO)</option>
+                        <option value="LBN">Lebanon (LBN)</option>
+                        <option value="LBY">Libya (LBY)</option>
+                        <option value="LCA">Saint Lucia (LCA)</option>
+                        <option value="LIE">Liechtenstein (LIE)</option>
+                        <option value="LKA">Sri Lanka (LKA)</option>
+                        <option value="LTU">Lithuania (LTU)</option>
+                        <option value="LUX">Luxembourg (LUX)</option>
+                        <option value="LVA">Latvia (LVA)</option>
+                        <option value="MAC">Macau (MAC)</option>
+                        <option value="MAR">Morocco (MAR)</option>
+                        <option value="MCO">Monaco (MCO)</option>
+                        <option value="MDG">Madagascar (MDG)</option>
+                        <option value="MDV">Maldives (MDV)</option>
+                        <option value="MEX">Mexico (MEX)</option>
+                        <option value="MKD">North Macedonia (MKD)</option>
+                        <option value="MLI">Mali (MLI)</option>
+                        <option value="MLT">Malta (MLT)</option>
+                        <option value="MMR">Myanmar (MMR)</option>
+                        <option value="MNE">Montenegro (MNE)</option>
+                        <option value="MOZ">Mozambique (MOZ)</option>
+                        <option value="MRT">Mauritania (MRT)</option>
+                        <option value="MUS">Mauritius (MUS)</option>
+                        <option value="MWI">Malawi (MWI)</option>
+                        <option value="MYS">Malaysia (MYS)</option>
+                        <option value="MYT">Mayotte (MYT)</option>
+                        <option value="NAM">Namibia (NAM)</option>
+                        <option value="NCL">New Caledonia (NCL)</option>
+                        <option value="NGA">Nigeria (NGA)</option>
+                        <option value="NIC">Nicaragua (NIC)</option>
+                        <option value="NLD">Netherlands (NLD)</option>
+                        <option value="NOR">Norway (NOR)</option>
+                        <option value="NPL">Nepal (NPL)</option>
+                        <option value="NZL">New Zealand (NZL)</option>
+                        <option value="OMN">Oman (OMN)</option>
+                        <option value="PAK">Pakistan (PAK)</option>
+                        <option value="PAN">Panama (PAN)</option>
+                        <option value="PER">Peru (PER)</option>
+                        <option value="PHL">Philippines (PHL)</option>
+                        <option value="PLW">Palau (PLW)</option>
+                        <option value="POL">Poland (POL)</option>
+                        <option value="PRI">Puerto Rico (PRI)</option>
+                        <option value="PRT">Portugal (PRT)</option>
+                        <option value="PRY">Paraguay (PRY)</option>
+                        <option value="PYF">French Polynesia (PYF)</option>
+                        <option value="QAT">Qatar (QAT)</option>
+                        <option value="ROU">Romania (ROU)</option>
+                        <option value="RUS">Russia (RUS)</option>
+                        <option value="RWA">Rwanda (RWA)</option>
+                        <option value="SAU">Saudi Arabia (SAU)</option>
+                        <option value="SDN">Sudan (SDN)</option>
+                        <option value="SEN">Senegal (SEN)</option>
+                        <option value="SGP">Singapore (SGP)</option>
+                        <option value="SLE">Sierra Leone (SLE)</option>
+                        <option value="SLV">El Salvador (SLV)</option>
+                        <option value="SMR">San Marino (SMR)</option>
+                        <option value="SRB">Serbia (SRB)</option>
+                        <option value="STP">Sao Tome and Principe (STP)</option>
+                        <option value="SUR">Suriname (SUR)</option>
+                        <option value="SVK">Slovakia (SVK)</option>
+                        <option value="SVN">Slovenia (SVN)</option>
+                        <option value="SWE">Sweden (SWE)</option>
+                        <option value="SYC">Seychelles (SYC)</option>
+                        <option value="SYR">Syria (SYR)</option>
+                        <option value="TGO">Togo (TGO)</option>
+                        <option value="THA">Thailand (THA)</option>
+                        <option value="TJK">Tajikistan (TJK)</option>
+                        <option value="TMP">Timor-Leste (TMP)</option>
+                        <option value="TUN">Tunisia (TUN)</option>
+                        <option value="TUR">Turkey (TUR)</option>
+                        <option value="TWN">Taiwan (TWN)</option>
+                        <option value="TZA">Tanzania (TZA)</option>
+                        <option value="UGA">Uganda (UGA)</option>
+                        <option value="UKR">Ukraine (UKR)</option>
+                        <option value="UMI">United States Minor Outlying Islands (UMI)</option>
+                        <option value="URY">Uruguay (URY)</option>
+                        <option value="USA">United States (USA)</option>
+                        <option value="UZB">Uzbekistan (UZB)</option>
+                        <option value="VEN">Venezuela (VEN)</option>
+                        <option value="VGB">British Virgin Islands (VGB)</option>
+                        <option value="VNM">Vietnam (VNM)</option>
+                        <option value="ZAF">South Africa (ZAF)</option>
+                        <option value="ZMB">Zambia (ZMB)</option>
+                        <option value="ZWE">Zimbabwe (ZWE)</option>
+                    </select>
+                </div>
+                
+
+                
+                   
+
+                <div>
+                    <label for="market_segment">Market Segment</label>
+                    <select id="market_segment" name="market_segment" required>
+                        <option value="" disabled selected>Select Market Segment</option>
+                        <option value="Aviation">Aviation</option>
+                        <option value="Complementary">Complementary</option>
+                        <option value="Corporate">Corporate</option>
+                        <option value="Direct">Direct</option>
+                        <option value="Groups">Groups</option>
+                        <option value="Offline TA/TO">Offline TA/TO</option>
+                        <option value="Online TA">Online TA</option>
+                        <option value="Undefined">Undefined</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="distribution_channel">Distribution Channel</label>
+                    <select id="distribution_channel" name="distribution_channel" required>
+                        <option value="" disabled selected>Select Distribution Channel</option>
+                        <option value="Corporate">Corporate</option>
+                        <option value="Direct">Direct</option>
+                        <option value="GDS">GDS</option>
+                        <option value="TA/TO">TA/TO</option>
+                        <option value="Undefined">Undefined</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="assigned_room_type">Room Type</label>
+                    <select id="assigned_room_type" name="assigned_room_type" required>
+                        <option value="" disabled selected>Select Room Type</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        <option value="G">G</option>
+                        <option value="H">H</option>
+                        <option value="I">I</option>
+                        <option value="K">K</option>
+                        <option value="L">L</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="deposit_type">Deposit Type</label>
+                    <select id="deposit_type" name="deposit_type" required>
+                        <option value="" disabled selected>Select Deposit Type</option>
+                        <option value="No Deposit">No Deposit</option>
+                        <option value="Non Refund">Non Refund</option>
+                        <option value="Refundable">Refundable</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="customer_type">Customer Type</label>
+                    <select id="customer_type" name="customer_type" required>
+                        <option value="" disabled selected>Select Customer Type</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Group">Group</option>
+                        <option value="Trasient">Trasient</option>
+                        <option value="Trasient-Party">Trasient-Party</option>
+                    </select>
+                </div>
+
+                
+                
+            </div>
+            <button type="submit" class="submit-button">Predict</button>
+        </form>
+        
+        <!-- <h2>{{ prediction_text }}</h2> -->
+        <h2 id="prediction-text">{{ prediction_text }}</h2>
+
+
+
+        <script>
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+        
+                const formData = new FormData(event.target);
+                const jsonData = {};
+        
+                // Convert FormData to JSON
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+        
+                fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData) // Send JSON data
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Update prediction text
+                    document.getElementById('prediction-text').textContent = data.prediction;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('prediction-text').textContent = "An error occurred!";
+                });
+            });
+        </script>
+        
+        
+    </div>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
